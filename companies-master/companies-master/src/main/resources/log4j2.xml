@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+
+    <!-- ALL < DEBUG < INFO < WARN < ERROR < FATAL < OFF -->
+
+    <Properties>
+        <Property name="pattern">[%-5level] %date{yyyy-MM-dd HH:mm:ss} [%logger{10}:%line] - %message%n</Property>
+
+        <Property name="logfolder">C:/logs/companies</Property>
+        <Property name="logfile">comp.log</Property>
+        <Property name="archivefolder">companiesArchive</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${pattern}"/>
+        </Console>
+        <RollingFile name="RollingFile-Appender"
+                     fileName="${logfolder}/${logfile}"
+                     filePattern="${logfolder}/${archivefolder}/${logfile}.%d{yyyy-MM-dd-hh-mm}.gz">
+            <PatternLayout pattern="${pattern}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile-Appender" level="debug"/>
+        </Root>
+        <Logger name="org.springframework" level="warn"/>
+        <Logger name="org.springframework.jdbc" level="warn"/>
+    </Loggers>
+</Configuration>

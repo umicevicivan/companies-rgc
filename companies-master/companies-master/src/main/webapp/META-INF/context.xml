@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context>
+
+    <Resource name="jdbc/companiesDB" auth="Container" type="javax.sql.DataSource"
+              maxActive="4000"
+              maxIdle="20"
+              validationQuery="SELECT 1"
+              testOnBorrow="true"
+              suspectTimeout="60"
+              timeBetweenEvictionRunsMillis="30000"
+              minEvictableIdleTimeMillis="60000"
+              logAbandoned="true"
+              removeAbandonedTimeout="60"
+              closeMethod="close"
+              username="USER" password="PASSWORD"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://localhost:5432/companies?autoReconnect=true&amp;useEncoding=true&amp;characterEncoding=UTF-8"/>
+
+</Context>
