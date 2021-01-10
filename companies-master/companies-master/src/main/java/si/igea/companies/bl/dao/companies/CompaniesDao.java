@@ -23,6 +23,23 @@ public class CompaniesDao extends AbstractJDBCDao {
 //        return new Company(1, "Igea");
 //    }
 	
+	public int getNextId() throws ClassNotFoundException{
+		int maxInt = 0;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/companiesdb", "admin", "admin");
+			Statement stat = conn.createStatement();
+			ResultSet rs = stat.executeQuery("Select max(id) from companies");
+			while (rs.next()) {
+				maxInt = rs.getInt(1) + 1;
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+			maxInt = 1;
+		}
+		return maxInt;
+	}
+	
 	public List<Company> getCompanies(int page, int perPage) throws ClassNotFoundException {
 		List<Company> lista = new ArrayList<Company>();
 		try {
@@ -151,7 +168,6 @@ public class CompaniesDao extends AbstractJDBCDao {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		System.out.println(totalRecords);
 		return totalRecords;
 	}
 

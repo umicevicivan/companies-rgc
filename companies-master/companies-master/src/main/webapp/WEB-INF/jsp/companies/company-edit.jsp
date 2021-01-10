@@ -22,11 +22,13 @@
 			<h1>Edit Company</h1>
 		</div>
 		<div class="pt-3">
-			<form:form method="POST" action="/companies/companies/editComp/${comp.id}"
+			<form:form method="POST"
+				action="/companies/companies/editComp/${comp.id}"
 				modelAttribute="company">
 				<div class="form-group">
 					<label>Id:</label>
-					<form:input disabled="true" class="form-control" path="id" value="${comp.id}" />
+					<form:input disabled="true" class="form-control" path="id"
+						value="${comp.id}" />
 				</div>
 				<div class="form-group">
 					<label>Name:</label>
@@ -42,7 +44,8 @@
 				<div class="form-group">
 					<label for="sel1">Select country:</label>
 					<form:select path="countryId" class="form-control" id="sel1">
-						<form:option value="${comp.countryId}" label="-- Select other country --"></form:option>
+						<form:option value="${comp.countryId}"
+							label="-- Select other country --"></form:option>
 						<form:options items="${countries}" itemLabel="name" itemValue="id"></form:options>
 					</form:select>
 				</div>
@@ -51,6 +54,8 @@
 						class="btn btn-outline-success btn-lg btn-block" />
 				</div>
 			</form:form>
+			<a class="btn btn-outline-dark btn-lg btn-block" type="button"
+				href="http://localhost:8080/companies/companies/list/1">Cancel</a>
 		</div>
 
 	</div>

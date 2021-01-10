@@ -17,7 +17,7 @@
 
 </head>
 <body>
-	<nav class="navbar sticky-top navbar-dark bg-dark ">
+	<nav class="navbar sticky-top navbar-dark bg-primary ">
 		<div class="container">
 			<a class="navbar-brand" href="<c:url value="/companies/list/1"/>">Companies</a>
 			<form class="form-inline" method="GET"
@@ -25,7 +25,7 @@
 				<div>
 					<input type="text" class="form-control" name="searchString"
 						placeholder="Search ..." /> <input type="submit" value="Submit"
-						class="btn btn-primary" />
+						class="btn btn-outline-light" />
 				</div>
 			</form>
 		</div>

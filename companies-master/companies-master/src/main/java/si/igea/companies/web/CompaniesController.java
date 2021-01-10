@@ -83,7 +83,7 @@ public class CompaniesController {
             page = (page - 1) * perPage + 1;    
         }  
 
-		if(searchString == null) {
+		if(searchString == null || searchString == "") {
 			try {
 				List<Company> companyList = companiesDao.getCompanies(page, perPage);
 
@@ -109,7 +109,7 @@ public class CompaniesController {
 	public String addCompanies(@ModelAttribute("company") Company com, BindingResult result, ModelMap model) {
 		try {
 			List<Country> countryList = countriesDao.getCountries();
-			int nextId = totalRecords + 1;
+			int nextId = companiesDao.getNextId();
 			model.addAttribute("nextId", nextId);
 			model.addAttribute("countries", countryList);
 		} catch (Exception e) {
@@ -125,7 +125,12 @@ public class CompaniesController {
 		try {
 			Country count = countriesDao.getCountry(com.getCountryId());
 			com.setCountry(count);
-			com.setId(totalRecords + 1);
+			int nextId = companiesDao.getNextId();
+			if( nextId == 0) {
+				com.setId(nextId+1);
+			}else {
+				com.setId(nextId);
+			}
 			done = companiesDao.insertCompany(com);
 		} catch (Exception e) {
 			System.out.println(e);
